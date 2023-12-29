@@ -22,7 +22,7 @@ if __name__ == '__main__':
     args = parser.parse_args(sys.argv[1:])
 
     ip_range = None;
-    port_list = [22,55,3306,5432];
+    port_list = [];
     if args.ip:
         ip_range = ipRangeList(args.ip[0], args.ip[0])
     if args.net:
@@ -34,6 +34,6 @@ if __name__ == '__main__':
 
     scan = PortsScanner(ip_range, port_list  = port_list, typesc=args.scanner, tm=args.timeout, w=args.wait, threads=args.th)
 
-    print(scan.scanChoise());
+    print(scan.scanChoise())
 
-    print("End Time ",datetime.now())
+    print("End Time ", datetime.now())

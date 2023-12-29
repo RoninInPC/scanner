@@ -9,13 +9,17 @@ import socks
 
 
 def vulnEasyChatCerverCheck(ip, port):
+    proxies = {
+        'http': 'socks5h://127.0.0.1:9050',
+        'https': 'socks5h://127.0.0.1:9050'
+    }
     try:
-        response = requests.get(f'http://{ip}:{port}', timeout=10)
+        response = requests.get(f'http://{ip}:{port}', proxies=proxies,timeout=10)
         print(response.headers)
         if 'Easy Chat Server' in response.headers.get('Server'):
             print(f"{ip}:{port}  have vuln Easy Chat Server")
-    except errno:
-        print(errno)
+    except Exception:
+        print(Exception.args)
         return
 
 
